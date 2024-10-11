@@ -1,0 +1,31 @@
+syntax="proto3";
+
+option csharp_namespace = "UnaryServer";
+
+package unary;
+
+import "google/protobuf/timestamp.proto";
+
+message ChildClass {
+	int32 child_member = 1;
+}
+enum Status {
+	UNKNOWN = 0;
+	ACTIVE = 1;
+	INACTIVE = 2;
+	DELETED = 3;
+}
+message ParentClassProto {
+	ChildClass NullableChildClass = 1;
+	repeated ChildClass ListChildClass = 2;
+	string NullableStr = 3;
+	float FloatingPointValue = 4;
+	double DoubleingValue = 5;
+	int64 NullableLong = 6;
+	int64 NormalLong = 7;
+	bool BoolIsNull = 8;
+	bool BoolIsntNull = 9;
+	map<string, int32> Dictionary = 10;
+	Status Status = 11;
+	google.protobuf.Timestamp DateTime = 12;
+}
