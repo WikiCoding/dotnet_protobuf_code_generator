@@ -10,17 +10,24 @@ internal class Program
     static void Main(string[] args)
     {
         // building the headers
-        StringBuilder sb = ProtoFileHeadersGenerator.Generate(containsDateTimeImport: true, optionValue: "UnaryServer", packageName: "unary");
+        //StringBuilder sb = ProtoFileHeadersGenerator.Generate(containsDateTimeImport: true, optionValue: "UnaryServer", packageName: "unary");
 
-        string childClass = ClassToProtoMessageMapper<ChildClass>.Map(nameof(ChildClass));
-        sb.Append(childClass);
+        //string childClass = ClassToProtoMessageMapper<ChildClass>.Map(nameof(ChildClass));
+        //sb.Append(childClass);
 
-        string statusEnum = ClassToProtoMessageMapper<Status>.Map(nameof(Status));
-        sb.Append(statusEnum);
+        //string statusEnum = ClassToProtoMessageMapper<Status>.Map(nameof(Status));
+        //sb.Append(statusEnum);
 
-        string parentClass = ClassToProtoMessageMapper<ParentClass>.Map(nameof(ParentClass) + "Proto");
-        sb.Append(parentClass);
+        //string parentClass = ClassToProtoMessageMapper<ParentClass>.Map(nameof(ParentClass) + "Proto");
+        //sb.Append(parentClass);
 
-        FileGenerator.Generate(sb.ToString(), nameof(ParentClass) + "Proto");
+        //FileGenerator.Generate(sb.ToString(), nameof(ParentClass) + "Proto");
+
+        FileGenerator.Generate(
+            ProtoFileHeadersGenerator.Generate(containsDateTimeImport: true, optionValue: "UnaryServer", packageName: "unary")
+            .Append(ClassToProtoMessageMapper<ChildClass>.Map(nameof(ChildClass)))
+            .Append(ClassToProtoMessageMapper<Status>.Map(nameof(Status)))
+            .Append(ClassToProtoMessageMapper<ParentClass>.Map(nameof(ParentClass) + "Proto")).ToString(), 
+            nameof(ParentClass) + "Proto");
     }
 }
